@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "775735060310",
+    "project_id": "althouraya-5a103",
+    "storage_bucket": "althouraya-5a103.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775735060310:android:a23222199aaf59bcd918f7",
+        "android_client_info": {
+          "package_name": "com.althouraya.althouraya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775735060310-o58ugeeb4aujf4lgv18kh58plv34iqkn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVDXGz6oipl9Kk4bLqF2yoXACdYPjPxrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775735060310-o58ugeeb4aujf4lgv18kh58plv34iqkn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
