@@ -1,7 +1,7 @@
 import 'package:althouraya/infrastructure/request.dart';
 import 'package:althouraya/infrastructure/utils.dart';
 import 'package:althouraya/models/address.dart';
-import 'package:althouraya/models/tour_model.dart';
+import 'package:althouraya/infrastructure/request.dart';
 
 class UserModel extends RentXSerialized {
   String? email;
@@ -10,14 +10,12 @@ class UserModel extends RentXSerialized {
   String? surname;
   DateTime? birthdate;
   UserRole? role;
-  Gender? gender;
   Address? address;
   String? password;
   String? confirmPassword;
   String? personalId;
   String? phoneNumber;
   String? profilePictureId;
-  String? carPlate, carType;
 
   UserModel.instance();
 
@@ -33,9 +31,7 @@ class UserModel extends RentXSerialized {
       this.confirmPassword,
       this.personalId,
       this.phoneNumber,
-      this.carPlate,
-      this.gender,
-      this.carType,
+
       this.profilePictureId});
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -51,10 +47,8 @@ class UserModel extends RentXSerialized {
     role = EnumUtil.strToEnum(UserRole.values, json['role']);
     password = json['password'];
     personalId = json['personalId'];
-    gender = EnumUtil.strToEnum(Gender.values, json['gender']);
     profilePictureId = json['profilePictureId'];
-    carPlate = json['carPlate'];
-    carType = json['carType'];
+
   }
 
   @override
@@ -71,12 +65,11 @@ class UserModel extends RentXSerialized {
         'personalId': personalId,
         'phoneNumber': phoneNumber,
         'profilePictureId': profilePictureId,
-        'carPlate': carPlate,
-        'gender': gender!.name,
-        'carType': carType,
       };
 
   String getFullName() => '$name $surname';
 }
 
-enum UserRole { tourist, driver, admin }
+enum UserRole { client, tech, admin }
+
+enum Gender { male, female,}

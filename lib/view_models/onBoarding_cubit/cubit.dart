@@ -1,3 +1,4 @@
+import 'package:althouraya/services/language_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:althouraya/models/onBoarding_model.dart';
@@ -19,26 +20,25 @@ class OnBoardingCubit extends Cubit<OnBoardingStates> {
     emit(OnNextRegistrationStep());
   }
 
-  List<OnBoardingModel> onBoardingList = [
-    OnBoardingModel(
-      title: "AlThouraya",
-      image: "assets/images/welcome.svg",
-      subTitle:
-          "AlTouraya is a domestic, inbound Security company, located in Saudi Arabia.",
-    ),
-    OnBoardingModel(
-      title: "Online E-commerce App",
-      image: "assets/images/trip.svg",
-      subTitle:
-          "Explore our best selling secuirty equipments, we have a great offers for you..",
-    ),
-    OnBoardingModel(
-      title: "Book Your Installation Technician !",
-      image: "assets/images/driver.svg",
-      subTitle:
-          "We offer a great Installation service in which you can book and track your installation service",
-    ),
-  ];
+  List<OnBoardingModel> onBoardingList(context) {
+    return [
+      OnBoardingModel(
+        title: translation(context).title1,
+        image: "assets/images/welcome.svg",
+        subTitle: translation(context).onBoarding1,
+      ),
+      OnBoardingModel(
+        title: translation(context).title2,
+        image: "assets/images/booking.svg",
+        subTitle: translation(context).onBoarding2,
+      ),
+      OnBoardingModel(
+        title: translation(context).title3,
+        image: "assets/images/tracking.svg",
+        subTitle: translation(context).onBoarding3,
+      ),
+    ];
+  }
 
   onBackStep() {
     index -= 1;

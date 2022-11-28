@@ -1,8 +1,10 @@
+import 'dart:ffi';
+
+import 'package:althouraya/models/review_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:althouraya/infrastructure/exceptions.dart';
-import 'package:althouraya/infrastructure/localizations/language.dart';
-import 'package:althouraya/infrastructure/localizations/translator.dart';
+
 import 'package:althouraya/models/tour_model.dart';
 
 void printLn(Object? object) {
@@ -57,7 +59,6 @@ class DateUtil {
   }
 
   static _labeledDay(String day) {
-    if (Language.currentLanguage.locale.languageCode == 'al') return day;
     if (day.endsWith('1')) return day + 'st';
     if (day.endsWith('2')) return day + 'nd';
     if (day.endsWith('3')) return day + 'rd';
@@ -95,7 +96,7 @@ class DateUtil {
   }
 
   static _labeledMonth(int month) {
-    return Translator.translate(_getMonthStr(month));
+    return _getMonthStr(month);
   }
 
   static bool _isSameMonthYear(DateTime from, DateTime to) {
@@ -158,5 +159,17 @@ class NumberUtil {
       padded += left!;
     }
     return padded + strNum;
+  }
+}
+
+class RatingUtil {
+  static getRating(
+    List<ReviewModel> reviews,
+  ) {
+    double rating = 0;
+    for (var review in reviews) {
+      rating += review.rating!;
+    }
+    return (rating / reviews.length).roundToDouble().toString();
   }
 }
