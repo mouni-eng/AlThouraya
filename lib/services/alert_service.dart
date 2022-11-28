@@ -4,8 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:althouraya/constants.dart';
 import 'package:althouraya/infrastructure/exceptions.dart';
 import 'package:althouraya/size_config.dart';
-import 'package:althouraya/widgets/base_widget.dart';
-import 'package:althouraya/widgets/components/custom_text.dart';
+import 'package:althouraya/widgets/custom_text.dart';
 
 enum SnackbarType { success, warning, error }
 
@@ -21,8 +20,7 @@ class ErrorService {
 }
 
 class AlertService {
-  static showSnackbarAlert(
-      String strAlert, RentXContext rentXContext, SnackbarType type) {
+  static showSnackbarAlert(String strAlert, SnackbarType type, context) {
     Flushbar(
       padding: EdgeInsets.symmetric(
         horizontal: width(16),
@@ -34,30 +32,28 @@ class AlertService {
       ),
       boxShadows: [boxShadow],
       borderRadius: BorderRadius.circular(16),
-      backgroundColor: rentXContext.theme.customTheme.onPrimary,
+      backgroundColor: Theme.of(context).backgroundColor,
       titleText: type.index == 2
           ? CustomText(
-              color: rentXContext.theme.customTheme.headline,
               fontSize: width(16),
-              text: '$strAlert.code',
+              text: strAlert,
               fontWeight: FontWeight.w600,
             )
           : CustomText(
-              color: rentXContext.theme.customTheme.headline,
               fontSize: width(16),
               text: type.name,
               fontWeight: FontWeight.w600,
             ),
       messageText: CustomText(
-        color: rentXContext.theme.customTheme.headline3,
+        color: Theme.of(context).hintColor,
         fontSize: width(14),
         maxlines: 3,
-        text: '$strAlert.desc',
+        text: strAlert,
       ),
       icon: SvgPicture.asset("assets/images/${type.name}.svg"),
       mainButton: GestureDetector(
         onTap: () {
-          rentXContext.pop();
+          Navigator.pop(context);
         },
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -66,6 +62,6 @@ class AlertService {
           child: SvgPicture.asset("assets/images/exit.svg"),
         ),
       ),
-    ).show(rentXContext.context);
+    ).show(context);
   }
 }

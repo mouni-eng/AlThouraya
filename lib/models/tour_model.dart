@@ -71,6 +71,8 @@ class TourModel extends RentXSerialized {
 
 enum Gender { male, female }
 
+
+
 class Time {
   int? hour, min;
   String? period;
